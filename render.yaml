@@ -3,6 +3,7 @@ services:
   - type: web
     name: ai-csv-importer-backend
     runtime: docker
+    plan: free
     dockerContext: ./backend
     dockerfilePath: ./backend/Dockerfile
     envVars:
