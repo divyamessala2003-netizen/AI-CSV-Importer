@@ -1,4 +1,11 @@
-const API_BASE_URL = 'http://localhost:8080/api/csv';
+let apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080';
+if (!apiBaseUrl.startsWith('http://') && !apiBaseUrl.startsWith('https://')) {
+  apiBaseUrl = `https://${apiBaseUrl}`;
+}
+if (!apiBaseUrl.endsWith('/api/csv')) {
+  apiBaseUrl = `${apiBaseUrl}/api/csv`;
+}
+const API_BASE_URL = apiBaseUrl;
 
 export async function previewCsvFile(file) {
   const formData = new FormData();

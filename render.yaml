@@ -1,0 +1,30 @@
+services:
+  # Spring Boot Backend
+  - type: web
+    name: ai-csv-importer-backend
+    env: docker
+    dockerContext: ./backend
+    dockerfilePath: ./backend/Dockerfile
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: PORT
+        value: 8080
+
+  # Vite Frontend
+  - type: web
+    name: ai-csv-importer-frontend
+    env: static
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    publishPath: dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_BASE_URL
+        fromService:
+          type: web
+          name: ai-csv-importer-backend
+          property: host
