@@ -1,0 +1,20 @@
+# Frontend
+frontend/node_modules/
+frontend/dist/
+
+# Backend
+backend/target/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# Environment
+.env
+backend/.env
+frontend/.env
+
+# OS files
+.DS_Store
+Thumbs.db
